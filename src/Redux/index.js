@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 
 const enhancer = compose(
   applyMiddleware(thunkMiddleware),
-  window.devToolsExtension ? window.devToolsExtension() : f => f
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 
 const rootReducer = combineReducers({
@@ -13,7 +13,7 @@ const rootReducer = combineReducers({
 })
 
 const reduxStore = createStore(
-  rootReducer, // replace the function with your root reducer
+  rootReducer,
   enhancer
 )
 
