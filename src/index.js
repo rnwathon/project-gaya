@@ -1,7 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import routes from './Routes';
 import * as serviceWorker from './serviceWorker';
+import './index.scss';
+
+function App() {
+  return (
+    <React.Fragment>
+      <Router>
+        <Switch>
+          {routes.map(route => {
+            return(
+              <Route path={route.path} component={route.component} exact={route.exact} />
+            )
+          })}
+        </Switch>
+      </Router>
+    </React.Fragment>
+  );
+}
 
 ReactDOM.render(
   <React.StrictMode>
