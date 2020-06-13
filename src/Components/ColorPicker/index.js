@@ -1,6 +1,7 @@
 import styled from 'styled-components'
+import { UtilityInput } from '../Utility'
 
-const ColorPicker = styled.input.attrs(props => ({
+const ColorPicker = styled(UtilityInput).attrs(props => ({
   style: {
     backgroundColor: props.value
   }
