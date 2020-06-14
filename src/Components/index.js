@@ -3,6 +3,7 @@ import {Card, CardTitle} from './Card'
 import {ColorPicker} from './ColorPicker'
 import {FlexWrapper} from './Flexbox'
 import {Sidebar} from './Sidebar'
+import {InputSlider} from './InputSlider'
 import {
   MediaQueryMax,
   UtilityDiv,
@@ -17,6 +18,8 @@ export {
   ColorPicker,
   FlexWrapper,
   Sidebar,
+
+  InputSlider,
 
   MediaQueryMax,
   UtilityDiv,

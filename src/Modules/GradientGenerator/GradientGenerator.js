@@ -8,7 +8,8 @@ import {
   ColorPicker,
   FlexWrapper,
   Sidebar,
-  MediaQueryMax
+  MediaQueryMax,
+  InputSlider
 } from '../../Components'
 
 const Wrapper = styled.div.attrs(props => ({
@@ -116,9 +117,9 @@ class GradientGenerator extends React.Component {
           </FlexWrapper>
           <FlexWrapper flexDirection="column">
             <label>Angle</label>
-            <input 
+            <InputSlider 
               type="range" 
-              style={{border: "none", marginBottom: "1rem"}} 
+              mb="1rem"
               min={0} 
               max={360} 
               value={angle} 
