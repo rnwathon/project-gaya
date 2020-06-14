@@ -16,6 +16,10 @@ const Button = styled(UtilityBtn)`
   };
   color: #2f3640;
   width: ${props => props.block && "100%"};
+
+  &:focus {
+    outline: none;
+  }
 `
 
 export {

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 const UtilityDiv = styled.div`
   width: ${props => props.w};
@@ -60,7 +60,23 @@ const UtilityInput = styled.input`
   text-align: ${props => props.textAlign};
 `
 
+const mediaSizes = {
+   desktop: 1024,
+   tablet: 760,
+   mobile: 415
+}
+
+const MediaQueryMax = Object.keys(mediaSizes).reduce((acc, label) => {
+   acc[label] = (...args) => css`
+      @media (max-width: ${mediaSizes[label]}px) {
+         ${css(...args)};
+      }
+   `
+   return acc
+}, {})
+
 export { 
+  MediaQueryMax,
   UtilityDiv,
   UtilityBtn,
   UtilityInput

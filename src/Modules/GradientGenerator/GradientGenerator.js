@@ -1,12 +1,14 @@
-import React, { useMemo } from 'react'
-import styled from 'styled-components'
+import React from 'react'
+import styled, {css} from 'styled-components'
 import Prism from 'prismjs'
 import {
   Button, 
   Card, 
   CardTitle, 
   ColorPicker,
-  FlexWrapper 
+  FlexWrapper,
+  Sidebar,
+  MediaQueryMax
 } from '../../Components'
 
 const Wrapper = styled.div.attrs(props => ({
@@ -14,8 +16,27 @@ const Wrapper = styled.div.attrs(props => ({
     backgroundImage: `linear-gradient(${props.angle}deg, ${props.firstColor} 0%, ${props.secondColor} 100%)`
   }
 }))`
+  position: relative;
   min-height: 100vh;
   padding: 1em;
+  margin-right: 300px;
+
+  ${MediaQueryMax.tablet`
+    margin-right: 0;
+  `}
+`
+
+const CssCode = styled.div`
+  width: 500px;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translate(-50%, 0);
+
+  ${MediaQueryMax.tablet`
+    bottom: 210px;
+    width: 90%;
+  `}
 `
 
 class GradientGenerator extends React.Component {
@@ -50,37 +71,63 @@ class GradientGenerator extends React.Component {
   }
 
   handleSlider = (e) => {
-    this.setState({angle: e.target.value})
+    this.setState({angle: e.target.value}, () => Prism.highlightAll())
   }
 
   render() {
     const { firstColor, secondColor, angle } = this.state;
 
     return (
-      <Wrapper firstColor={firstColor} secondColor={secondColor} angle={angle}>
-        <FlexWrapper 
-          justifyContent="center" 
-          alignItems="center" 
-          minHeight="100vh">
-          <Card textAlign="center" maxWidth="100%">
-            <CardTitle >Gradient Generator</CardTitle>
-            <FlexWrapper justifyContent="space-around" mb="1.5rem">
-              <ColorPicker h="100px" w="100px" type="color" value={firstColor} onChange={(e) => this.setState({firstColor: e.target.value})}/>
-              <ColorPicker h="100px" w="100px" type="color" value={secondColor} onChange={(e) => this.setState({secondColor: e.target.value})}/>
-            </FlexWrapper>
-            <FlexWrapper mb="1.5rem" justifyContent="center">
-              <input type="range" style={{border: "none"}} min={0} max={360} value={angle} onChange={this.handleSlider}/>
-            </FlexWrapper>
-            <Button onClick={this.randomizeGradient} mb="1.5rem" mr="1rem" primary>Randomize</Button>
-            <Button onClick={this.randomizeGradient} mb="1.5rem" success>Save</Button>
-            <pre>
-              <code className="language-css">
-                {`background-image: linear-gradient(${angle}deg, ${firstColor} 0%, ${secondColor} 100%);`}
-              </code>
-            </pre>
-          </Card>
-        </FlexWrapper>
-      </Wrapper>
+      <React.Fragment>
+        <Wrapper firstColor={firstColor} secondColor={secondColor} angle={angle}>
+          <CssCode>
+            <Card textAlign="center" maxWidth="100%">
+              <CardTitle >Gradient Generator</CardTitle>
+              <pre style={{wordWrap: "prewrap"}}>
+                <code className="language-css">
+                  {`background-image: linear-gradient(${angle}deg, ${firstColor} 0%, ${secondColor} 100%);`}
+                </code>
+              </pre>
+            </Card>
+          </CssCode>
+        </Wrapper>
+        <Sidebar>
+          <FlexWrapper flexDirection="column">
+            <label>First Color</label>
+            <ColorPicker 
+              h="100px" 
+              w="100%" 
+              type="color" 
+              value={firstColor} 
+              onChange={(e) => this.setState({firstColor: e.target.value})}/>
+          </FlexWrapper>
+          <FlexWrapper flexDirection="column">
+          <label>Second Color</label>
+          <ColorPicker 
+            h="100px" 
+            w="100%" 
+            type="color" 
+            value={secondColor} 
+            onChange={(e) => this.setState({secondColor: e.target.value})}/>
+          </FlexWrapper>
+          <FlexWrapper flexDirection="column">
+            <label>Angle</label>
+            <input 
+              type="range" 
+              style={{border: "none", marginBottom: "1rem"}} 
+              min={0} 
+              max={360} 
+              value={angle} 
+              onChange={this.handleSlider}/>
+            <Button 
+              onClick={this.randomizeGradient} 
+              block
+              primary>
+                Randomize
+            </Button>
+          </FlexWrapper>
+        </Sidebar>
+      </React.Fragment>
     )
   }
 }

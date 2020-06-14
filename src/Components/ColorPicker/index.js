@@ -9,7 +9,6 @@ const ColorPicker = styled(UtilityInput).attrs(props => ({
   width: ${props => props.w};
   height: ${props => props.h};
   border: 3px solid #2f3640;
-  border-radius: 50%;
 
   &:focus{
     outline: none;
