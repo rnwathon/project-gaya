@@ -74,6 +74,10 @@ class GradientGenerator extends React.Component {
     this.setState({angle: e.target.value}, () => Prism.highlightAll())
   }
 
+  handleColor = (e, name) => {
+    this.setState({[name]: e.target.value}, () => Prism.highlightAll())
+  }
+
   render() {
     const { firstColor, secondColor, angle } = this.state;
 
@@ -82,7 +86,7 @@ class GradientGenerator extends React.Component {
         <Wrapper firstColor={firstColor} secondColor={secondColor} angle={angle}>
           <CssCode>
             <Card textAlign="center" maxWidth="100%">
-              <CardTitle >Gradient Generator</CardTitle>
+              <CardTitle>CSS Gradient</CardTitle>
               <pre style={{wordWrap: "prewrap"}}>
                 <code className="language-css">
                   {`background-image: linear-gradient(${angle}deg, ${firstColor} 0%, ${secondColor} 100%);`}
@@ -99,7 +103,7 @@ class GradientGenerator extends React.Component {
               w="100%" 
               type="color" 
               value={firstColor} 
-              onChange={(e) => this.setState({firstColor: e.target.value})}/>
+              onChange={(e) => this.handleColor(e, "firstColor")}/>
           </FlexWrapper>
           <FlexWrapper flexDirection="column">
           <label>Second Color</label>
@@ -108,7 +112,7 @@ class GradientGenerator extends React.Component {
             w="100%" 
             type="color" 
             value={secondColor} 
-            onChange={(e) => this.setState({secondColor: e.target.value})}/>
+            onChange={(e) => this.handleColor(e, "secondColor")}/>
           </FlexWrapper>
           <FlexWrapper flexDirection="column">
             <label>Angle</label>

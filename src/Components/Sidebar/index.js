@@ -14,8 +14,6 @@ const Sidebar = styled(UtilityDiv)`
   border-left: 5px solid #2f3640;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  justify-content: end;
 
   & > * {
     flex-shrink: 0;
