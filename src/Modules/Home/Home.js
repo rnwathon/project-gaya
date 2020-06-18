@@ -8,6 +8,7 @@ class Home extends React.Component {
       <React.Fragment>
         <h1>Project Gaya</h1>
         <br />
+        <Link to={Path.DisplaySizing}>Display & Sizing/</Link>
         <Link to={Path.GradientGenerator}>Gradient Generator/</Link>
         <Link to={Path.BoxShadow}>Box Shadow/</Link>
       </React.Fragment>
