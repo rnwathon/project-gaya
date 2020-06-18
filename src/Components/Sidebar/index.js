@@ -32,7 +32,7 @@ const Sidebar = styled(UtilityDiv)`
     left: 0;
     right: 0;
     width: 100vw;
-    height: 200px;
+    height: ${props => props.tabletHeight || "200px"};
     overflow-x: scroll;
     overflow-y: hidden;
     border-left: none;
