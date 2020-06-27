@@ -2,9 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Prism from 'prismjs'
 import {
-  Button, 
   Card, 
-  CardTitle, 
   ColorPicker,
   FlexWrapper,
   Sidebar,
@@ -32,8 +30,8 @@ const Wrapper = styled.div.attrs(props => ({
 const Box = styled.div.attrs(props => ({
   style: {
     display: `${props.display}`,
-    width: `${props.boxWidth === "" ? null : props.boxWidth+"px"}`,
-    height: `${props.boxHeight === "" ? null : props.boxWidth+"px"}`,
+    width: `${props.boxWidth === "" ? "" : props.boxWidth+"px"}`,
+    height: `${props.boxHeight === "" ? "" : props.boxHeight+"px"}`,
     overflowX: `${props.overflowX}`,
     overflowY: `${props.overflowY}`
   }
@@ -114,9 +112,10 @@ class DisplaySizing extends React.Component {
             <Card textAlign="center" maxWidth="100%">
               <pre style={{wordWrap: "prewrap"}}>
                 <code className="language-css">
-                  {`
-
-                  `}
+{`display: ${display};
+overflowX: ${overflowX};
+overflowY: ${overflowY}; ${width ? "\nwidth: "+ width + "px;" : ""} ${height ? "\nheight: "+ height + "px;" : ""}
+`}
                 </code>
               </pre>
             </Card>
