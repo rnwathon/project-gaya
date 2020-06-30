@@ -11,6 +11,7 @@ class Home extends React.Component {
         <Link to={Path.DisplaySizing}>Display & Sizing/</Link>
         <Link to={Path.GradientGenerator}>Gradient Generator/</Link>
         <Link to={Path.BoxShadow}>Box Shadow/</Link>
+        <Link to={Path.BoxModel}>Box Model/</Link>
       </React.Fragment>
     )
   }
